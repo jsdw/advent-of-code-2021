@@ -51,8 +51,6 @@ function mostCommonBits(lines: string[]): ('0' | '1' | '=')[] {
 }
 
 function mostCommonBit(lines: string[], i: number): '0' | '1' | '=' {
-    let n = lines[0].length
-
     let zeros = 0
     let ones = 0
     for (let line of lines) {
