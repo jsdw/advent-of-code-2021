@@ -2,9 +2,18 @@
     export let number: number
     export let solver: Solver
 
+    let dragging = false
     let dragover = false
     let result: string | number = ''
     let error: boolean = false
+
+    function onDragStart() {
+        dragging = true
+    }
+
+    function onDragEnd() {
+        dragging = false
+    }
 
     function onDragOver(ev: DragEvent) {
         ev.preventDefault()
@@ -23,7 +32,21 @@
 
         let file = ev.dataTransfer?.files[0]
         if (!file) { return }
+        solveFile(file)
+    }
 
+    function uploadInput(ev: MouseEvent) {
+        let inputEl = document.createElement("input")
+        inputEl.type = 'file'
+        inputEl.oninput = function (ev) {
+            let file = inputEl.files?.[0]
+            if (!file) { return }
+            solveFile(file)
+        }
+        inputEl.click()
+    }
+
+    function solveFile(file: File) {
         readFileAsText(file)
             .then((text) => {
                 let res = solver(text)
@@ -54,17 +77,21 @@
 <div 
     class="star"
     class:dragover={dragover}
+    class:dragging={dragging}
+    on:dragstart={onDragStart}
+    on:dragend={onDragEnd}
     on:dragover={onDragOver}
     on:dragleave={onDragLeave}
     on:drop={onDrop}
 >
-    <em class="text">Star {number}:</em>
+    <em class="text" on:click={uploadInput}>Star {number}:</em>
     <div class="result" class:error={error}>{result}</div>
 </div>
 
 <style>
     .text {
         padding-right: 10px;
+        cursor: pointer;
     }
 
     .result {
@@ -89,7 +116,7 @@
         align-items: center;
     }
 
-    .star * {
+    .star.dragging * {
         pointer-events: none;
     }
 
