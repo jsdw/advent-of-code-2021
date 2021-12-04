@@ -1,0 +1,91 @@
+/*** The new CSS Reset - version 1.2.0 (see https://elad2412.github.io/the-new-css-reset/) ***/
+
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+Remove list styles (bullets/numbers)
+in case you use it with normalize.css
+*/
+ol, ul {
+    list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-width: 100%;
+}
+
+/* Removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/** Some global styles **/
+
+html {
+    /* The tiniest bit inspired by the AoC website.. */
+    --text-h1-color: #00cc00;
+    --text-h1-shadow: 0 0 2px var(--text-h1-color);
+    --text-h2-color: #ffffff;
+    --text-h3-color: #ffffff;
+    --text-em-color: #ffffff;
+    --text-em-shadow: 0 0 5px #ffffff;
+    --text-color: #cccccc;
+    --background-color: #0f0f23;
+    --link-color: #009900;
+    --link-highlight-color: #99ff99;
+
+    font-family: monospace;
+    font-size: 14px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1 {
+    color: var(--text-h1-color);
+    text-shadow: var(--text-h1-shadow);
+    font-size: 30px;
+    margin: 30px 0 30px 0;
+}
+
+h2 {
+    color: var(--text-h2-color);
+    font-size: 20px;
+    margin: 20px 0 20px 0;
+}
+
+h3 {
+    color: var(--text-h2-color);
+    font-size: 18px;
+    margin: 18px 0 18px 0;
+}
+
+em {
+    color: var(--text-em-color);
+    text-shadow: var(--text-em-shadow);
+}
+
+a {
+    color: var(--link-color);
+    cursor: pointer;
+}
+
+a:hover, a:focus {
+    color: var(--link-highlight-color);
+}
