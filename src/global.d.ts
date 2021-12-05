@@ -1,5 +1,7 @@
 /// <reference types="svelte" />
 
+type ThrowingSolver = (input: string) => (string | number)
+
 type Solver = (input: string) => SolverOutput
 
 type SolverOutput 

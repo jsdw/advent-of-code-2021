@@ -1,6 +1,6 @@
 import { map, windows, collect } from '../utils'
 
-export let star1: Solver = (input) => {
+export let star1: ThrowingSolver = (input) => {
     let numbers: number[] = input.split('\n')
         .map(line => parseInt(line.trim(), 10))
 
@@ -9,13 +9,10 @@ export let star1: Solver = (input) => {
         if (b > a) increases++
     }
 
-    return {
-        kind: 'success',
-        value: increases
-    }
+    return increases
 }
 
-export let star2: Solver = (input) => {
+export let star2: ThrowingSolver = (input) => {
     let numbers: number[] = input.split('\n')
         .map(line => parseInt(line.trim(), 10))
 
@@ -26,8 +23,5 @@ export let star2: Solver = (input) => {
         if (b > a) increases++
     }
 
-    return {
-        kind: 'success',
-        value: increases
-    }
+    return increases
 }

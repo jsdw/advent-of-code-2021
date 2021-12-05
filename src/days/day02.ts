@@ -1,4 +1,4 @@
-export let star1: Solver = (input) => {
+export let star1: ThrowingSolver = (input) => {
     let cmds = parseInput(input)
 
     let x = 0
@@ -13,13 +13,10 @@ export let star1: Solver = (input) => {
         }
     }
 
-    return {
-        kind: 'success',
-        value: x * y
-    }
+    return x * y
 }
 
-export let star2: Solver = (input) => {
+export let star2: ThrowingSolver = (input) => {
     let cmds = parseInput(input)
 
     let x = 0
@@ -36,10 +33,7 @@ export let star2: Solver = (input) => {
         }
     }
 
-    return {
-        kind: 'success',
-        value: x * y
-    }
+    return x * y
 }
 
 function parseInput(input: string): Command[] {

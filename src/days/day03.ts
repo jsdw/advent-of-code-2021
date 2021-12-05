@@ -1,4 +1,4 @@
-export let star1: Solver = (input) => {
+export let star1: ThrowingSolver = (input) => {
     let lines = input.trim().split('\n').map(line => line.trim())
 
     let gammaBits = mostCommonBits(lines).map(z => z == '0' ? 0 : 1).join('')
@@ -7,13 +7,10 @@ export let star1: Solver = (input) => {
     let gamma = parseInt(gammaBits, 2)
     let epsilon = parseInt(epsilonBits, 2)
 
-    return {
-        kind: 'success',
-        value: gamma * epsilon
-    }
+    return gamma * epsilon
 }
 
-export let star2: Solver = (input) => {
+export let star2: ThrowingSolver = (input) => {
     let lines = input.trim().split('\n').map(line => line.trim())
     let n = lines[0].length
     
@@ -35,10 +32,7 @@ export let star2: Solver = (input) => {
         if (co2ScrubberLines.length == 1) break
     }
 
-    return {
-        kind: 'success',
-        value: parseInt(o2GenLines[0], 2) * parseInt(co2ScrubberLines[0], 2)
-    }
+    return parseInt(o2GenLines[0], 2) * parseInt(co2ScrubberLines[0], 2)
 }
 
 function mostCommonBits(lines: string[]): ('0' | '1' | '=')[] {

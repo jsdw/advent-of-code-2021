@@ -3,8 +3,14 @@
     import * as day01 from '../days/day01'
     import * as day02 from '../days/day02'
     import * as day03 from '../days/day03'
+    import * as day04 from '../days/day04'
 
-    type Days = { title: string, description: string, star1: Solver, star2?: Solver }[]
+    type Days = { 
+        title: string, 
+        description: string, 
+        star1: ThrowingSolver, 
+        star2?: ThrowingSolver 
+    }[]
 
     let days: Days = [
         {
@@ -21,16 +27,22 @@
         },
         {
             title: "Binary Diagnostic",
-            description: "Gamme and epsilon rates from most/least common binary bits",
+            description: "Gamma and epsilon rates from most/least common binary bits",
             star1: day03.star1,
             star2: day03.star2,
         },
+        {
+            title: "Giant Squid",
+            description: "Playing bingo with a squid",
+            star1: day04.star1,
+            star2: day04.star2,
+        },
     ]
 
-    function catchExceptions(fn: Solver): Solver {
+    function toSolver(fn: ThrowingSolver): Solver {
         return function solverCatchingExceptions(input: string) {
             try {
-                return fn(input)
+                return { kind: 'success', value: fn(input) }
             } catch(e) {
                 return { kind: 'error', value: String(e) }
             }
@@ -49,8 +61,8 @@
                 title={day.title}
                 number={index + 1}
                 description={day.description}
-                star1={catchExceptions(day.star1)}
-                star2={day.star2 ? catchExceptions(day.star2) : undefined}
+                star1={toSolver(day.star1)}
+                star2={day.star2 ? toSolver(day.star2) : undefined}
             />
         {/each}
     </main>
