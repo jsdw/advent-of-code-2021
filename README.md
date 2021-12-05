@@ -1,8 +1,6 @@
 # Advent of Code 2021
 
-Solutions using Rust+WASM and a Svelte UI.
-
-See it here: https://jsdw.github.io/advent-of-code-2021/
+See the solutions here: https://jsdw.github.io/advent-of-code-2021/
 
 # Prerequisites
 
