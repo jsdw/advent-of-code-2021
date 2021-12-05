@@ -1,4 +1,4 @@
-import { arrayOf, fold, enumerate, last } from '../utils'
+import { arrayOf, fold, enumerate, last, map, zip } from '../utils'
 
 export let star1: ThrowingSolver = (input) => {
     let { numbers, boards } = parseInput(input)
@@ -25,41 +25,26 @@ export let star2: ThrowingSolver = (input) => {
 }
 
 type Position = { x: number, y: number }
-class Board {
-    #numberToPosition: Map<number, Position>
+type Board = Map<number, Position> & { readonly width: number, readonly height: number }
 
-    readonly height: number
-    readonly width: number
+function createBoard(numbers: number[][]): Board {
+    let height = numbers.length
+    let width = numbers[0].length
+    let board: Board = new Map<number,Position>() as Board
 
-    constructor(numbers: number[][]) {
-        let height = numbers.length
-        let width = numbers[0].length
-        let numberToPosition = new Map<number,Position>()
-    
-        for (let y = 0; y < height; y++) {
-            let row = numbers[y]
-            for(let x = 0; x < width; x++) {
-                let number = row[x]
-                numberToPosition.set(number, { x, y })
-            }
-        }
-
-        this.#numberToPosition = numberToPosition
-        this.height = height
-        this.width = width
-    }
-
-    getPosition(num: number): Position | undefined {
-        return this.#numberToPosition.get(num)
-    }
-    *values() {
-        for (let [number, position] of this.#numberToPosition.entries()) {
-            yield [position, number] as const
+    for (let y = 0; y < height; y++) {
+        let row = numbers[y]
+        for(let x = 0; x < width; x++) {
+            let number = row[x]
+            board.set(number, { x, y })
         }
     }
+
+    (board as any).width = width;
+    (board as any).height = height;
+    return board
 }
 
-// Turn input string into something more useful to work with
 function parseInput(input: string): { numbers: number[], boards: Board[] } {
     let lines: string[] = input.trim().split('\n')
 
@@ -68,21 +53,16 @@ function parseInput(input: string): { numbers: number[], boards: Board[] } {
     
     // Group together the lines for the boards:
     let boards: Board[] = []
-    let boardGroup: number[][] = []
-    for (let i = 1; i < lines.length; i++) {
-        let line = lines[i].trim()
+    let boardValues: number[][] = []
+    for (let line of map(lines.slice(1), l => l.trim())) {
         if (line.length == 0) {
-            if (boardGroup.length) boards.push(new Board(boardGroup))
-            boardGroup = []
+            if (boardValues.length) boards.push(createBoard(boardValues))
+            boardValues = []
         } else {
-            boardGroup.push(line.split(/\s+/).map(n => parseInt(n, 10)))
+            boardValues.push(line.split(/\s+/).map(n => parseInt(n, 10)))
         }
     }
-
-    return {
-        numbers,
-        boards
-    }
+    return { numbers, boards }
 }
 
 // Given some positions and a board width/height, do we have a winning line?
@@ -110,24 +90,24 @@ function* winningValues(numbers: number[], boards: Board[]) {
     // Draw each number
     for (let number of numbers) {
         // Check each board for it
-        for (let [i, board] of enumerate(boards)) {
+        for (let [i, [board, seen]] of enumerate(zip(boards, seenPositions))) {
             // Once a board has won, skip it:
             if (winners.has(i)) continue;
 
             // Does this board have the number we want?
-            let position = board.getPosition(number)
+            let position = board.get(number)
             if (!position) continue
 
             // We found a number on the board; note its position!
-            seenPositions[i].push(position)
+            seen.push(position)
 
             // Do these positions constitute a winning line?
-            if (isWinningLine(board.width, board.height, seenPositions[i])) {
+            if (isWinningLine(board.width, board.height, seen)) {
                 // Note the winner we've found.
                 winners.add(i)
                 // Sum up unmarked numbers, multiply by winning number.
-                let sum = fold(board.values(), 0, (sum, [{ x, y }, number]) => {
-                    return seenPositions[i].find(p => p.x == x && p.y == y)
+                let sum = fold(board.entries(), 0, (sum, [number, { x, y }]) => {
+                    return seen.find(p => p.x == x && p.y == y)
                         ? sum
                         : sum + number
                 })
