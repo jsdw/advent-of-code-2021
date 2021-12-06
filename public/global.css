@@ -51,6 +51,8 @@ html {
     --link-color: #009900;
     --link-highlight-color: #99ff99;
 
+    --margin: 30px;
+
     font-family: monospace;
     font-size: 14px;
     background-color: var(--background-color);
@@ -61,13 +63,24 @@ h1 {
     color: var(--text-h1-color);
     text-shadow: var(--text-h1-shadow);
     font-size: 30px;
-    margin: 30px 0 30px 0;
+    margin: var(--margin) 0 30px 0;
 }
 
 h2 {
     color: var(--text-h2-color);
     font-size: 20px;
     margin: 20px 0 20px 0;
+    position: relative;
+}
+
+/* ---'s surrounding title */
+h2::before {
+    display: inline;
+    content: '--- ';
+}
+h2::after {
+    display: inline;
+    content: ' ---';
 }
 
 h3 {
@@ -88,4 +101,27 @@ a {
 
 a:hover, a:focus {
     color: var(--link-highlight-color);
+}
+
+@media (max-width: 500px) {
+    html {
+        --margin: 15px;
+    }
+    .hide-when-small {
+        display: none;
+    }
+
+    /* On small displays, underline the h2's instead of '---'s */
+    h2::before {
+        content: '';
+    }
+    h2::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: -1pxpx;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }

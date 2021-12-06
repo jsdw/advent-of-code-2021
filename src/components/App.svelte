@@ -5,6 +5,7 @@
     import * as day03 from '../days/day03'
     import * as day04 from '../days/day04'
     import * as day05 from '../days/day05'
+    import * as day06 from '../days/day06'
 
     type Days = { 
         title: string, 
@@ -43,6 +44,12 @@
             description: "Avoiding lines of hydrothermal vents",
             star1: day05.star1,
             star2: day05.star2,
+        },
+        {
+            title: "Lanternfish",
+            description: "Array of fish multiplying every 7 days",
+            star1: day06.star1,
+            star2: day06.star2,
         },
     ]
 
@@ -83,8 +90,8 @@
 
     main {
         max-width: 800px;
-        margin: 0px 30px;
-        margin-bottom: 30px;
+        margin: 0px var(--margin);
+        margin-bottom: var(--margin);
     }
 
 </style>

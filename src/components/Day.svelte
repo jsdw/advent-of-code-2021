@@ -10,7 +10,10 @@
 </script>
 
 <div class="day">
-    <h2>--- Day {number}: <a href="https://adventofcode.com/2021/day/{number}">{title}</a> ---</h2>
+    <h2>
+        Day {number}: 
+        <a href="https://adventofcode.com/2021/day/{number}">{title}</a> 
+    </h2>
     <p>{description}</p>
     <Star
         number={1}
