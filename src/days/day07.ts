@@ -1,5 +1,3 @@
-import {smallestFirst } from '../utils'
-
 export let star1: ThrowingSolver = (input) => {
     let ns = input.trim().split(',').map(n => parseInt(n, 10))
     return calcBestFuel(ns, (n, pos) => Math.abs(n - pos))
@@ -8,8 +6,7 @@ export let star1: ThrowingSolver = (input) => {
 export let star2: ThrowingSolver = (input) => {
     let ns = input.trim().split(',').map(n => parseInt(n, 10))
     return calcBestFuel(ns, (n, pos) => {
-        let [a, b] = smallestFirst(n, pos)
-        let distance = b - a
+        let distance = Math.abs(n - pos)
         return(distance + 1) / 2 * distance
     })
 }
