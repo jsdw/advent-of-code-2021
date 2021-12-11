@@ -10,6 +10,7 @@
     import * as day08 from '../days/day08'
     import * as day09 from '../days/day09'
     import * as day10 from '../days/day10'
+    import * as day11 from '../days/day11'
 
     type Days = { 
         title: string, 
@@ -78,6 +79,12 @@
             description: "Working with {[<( syntax chunks",
             star1: day10.star1,
             star2: day10.star2,
+        },
+        {
+            title: "Dumbo Octopus",
+            description: "10x10 grid, octopus flashing when energy hits 9",
+            star1: day11.star1,
+            star2: day11.star2,
         },
     ]
 
