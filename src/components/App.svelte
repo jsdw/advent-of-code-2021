@@ -9,6 +9,7 @@
     import * as day07 from '../days/day07'
     import * as day08 from '../days/day08'
     import * as day09 from '../days/day09'
+    import * as day10 from '../days/day10'
 
     type Days = { 
         title: string, 
@@ -71,6 +72,12 @@
             description: "Find lowest points and basin sizes in the cave",
             star1: day09.star1,
             star2: day09.star2,
+        },
+        {
+            title: "Syntax Scoring",
+            description: "Working with {[<( syntax chunks",
+            star1: day10.star1,
+            star2: day10.star2,
         },
     ]
 

@@ -94,6 +94,21 @@ export function smallestFirst(a: number, b: number): [number, number] {
     return a < b ? [a, b] : [b, a]
 }
 
+/** Match some condition against an input and run the associated arm */
+export function match<T,O>(input: T, arms: [(input: T) => boolean, (input: T) => O][]): O | undefined {
+    for (let [condition, fn] of arms) {
+        if (condition(input)) {
+            return fn(input)
+        }
+    }
+}
+
+export function strictEq<T>(other: T) {
+    return function isEqual(input:T) {
+        return input === other
+    }
+}
+
 /** 
  * A set for which you can specify a function to map from arbitrary key to some primitive
  * type, and anothr to reverse this mapping. This allows you to use objects and arrays as
