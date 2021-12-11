@@ -8,6 +8,7 @@
     import * as day06 from '../days/day06'
     import * as day07 from '../days/day07'
     import * as day08 from '../days/day08'
+    import * as day09 from '../days/day09'
 
     type Days = { 
         title: string, 
@@ -64,6 +65,12 @@
             description: "Read digits from digital displays with scrambled wires",
             star1: day08.star1,
             star2: day08.star2,
+        },
+        {
+            title: "Smoke Basin",
+            description: "Find lowest points and basin sizes in the cave",
+            star1: day09.star1,
+            star2: day09.star2,
         },
     ]
 
