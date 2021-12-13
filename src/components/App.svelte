@@ -11,6 +11,7 @@
     import * as day09 from '../days/day09'
     import * as day10 from '../days/day10'
     import * as day11 from '../days/day11'
+    import * as day12 from '../days/day12'
 
     type Days = { 
         title: string, 
@@ -85,6 +86,12 @@
             description: "10x10 grid, octopus flashing when energy hits 9",
             star1: day11.star1,
             star2: day11.star2,
+        },
+        {
+            title: "Passage Pathing",
+            description: "Find routes through a graph with upper and lowercase letters",
+            star1: day12.star1,
+            star2: day12.star2,
         },
     ]
 

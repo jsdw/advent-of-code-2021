@@ -126,6 +126,12 @@ export class KeyedSet<V, P extends Primitive> {
         this.#set = new Set()
     }
     
+    get [Symbol.iterator]() {
+        return this.values.bind(this)
+    }
+    get size() {
+        return this.#set.size
+    }
     has(value: V) {
         return this.#set.has(this.#keyFn(value))
     }
@@ -162,6 +168,12 @@ export class KeyedMap<K,V,P extends Primitive> {
         this.#map = new Map()
     }
     
+    get [Symbol.iterator]() {
+        return this.entries.bind(this)
+    }
+    get size() {
+        return this.#map.size
+    }
     has(key: K) {
         return this.#map.has(this.#keyFn(key))
     }

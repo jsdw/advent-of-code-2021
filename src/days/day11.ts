@@ -1,4 +1,4 @@
-import { enumerate } from '../utils' 
+import { enumerate, KeyedSet } from '../utils' 
 
 export let star1: ThrowingSolver = (input) => {
     let grid = parseInput(input)
@@ -30,10 +30,13 @@ function step(grid: readonly number[][]): { grid: number[][], flashes: number } 
     }
 
     // Flash if greater than 9, recursively
-    let flashedCoords = new Set<string>()
+    let flashedCoords = new KeyedSet(
+        ([x,y]: [number,number]) => `${x},${y}`,
+        (key) => key.split(',').map(n => parseInt(n,10)) as [number,number]
+    )
     function tryFlash(x: number, y: number) {
-        if (next[y][x] > 9 && !flashedCoords.has(`${x},${y}`)) {
-            flashedCoords.add(`${x},${y}`)
+        if (next[y][x] > 9 && !flashedCoords.has([x,y])) {
+            flashedCoords.add([x,y])
             for (let [x2,y2] of adjacent(x,y)) {
                 next[y2][x2] += 1
                 tryFlash(x2,y2)
@@ -45,8 +48,7 @@ function step(grid: readonly number[][]): { grid: number[][], flashes: number } 
     }
 
     // Set energy to 0 for all flashed octopodes
-    for (let coordString of flashedCoords) {
-        let [x,y] = coordString.split(',').map(n => parseInt(n,10))
+    for (let [x,y] of flashedCoords) {
         next[y][x] = 0
     }
 
