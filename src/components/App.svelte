@@ -13,6 +13,7 @@
     import * as day11 from '../days/day11'
     import * as day12 from '../days/day12'
     import * as day13 from '../days/day13'
+    import * as day14 from '../days/day14'
 
     type Days = { 
         title: string, 
@@ -99,6 +100,12 @@
             description: "Fold up transparent paper with dots on",
             star1: day13.star1,
             star2: day13.star2,
+        },
+        {
+            title: "Extended Polymerization",
+            description: "'CH -> B' Inserting elements between pairs (fun!)",
+            star1: day14.star1,
+            star2: day14.star2,
         },
     ]
 
