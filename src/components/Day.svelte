@@ -20,7 +20,6 @@
         solver={star1}
     />
     {#if star2}
-        ,
         <Star
             number={2}
             solver={star2}

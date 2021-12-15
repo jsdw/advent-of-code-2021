@@ -6,6 +6,7 @@
     let dragover = false
     let result: string | number = ''
     let error: boolean = false
+    let timing = 0
 
     function onDragStart() {
         dragging = true
@@ -35,7 +36,7 @@
         solveFile(file)
     }
 
-    function uploadInput(ev: MouseEvent) {
+    function uploadInput(_ev: MouseEvent) {
         let inputEl = document.createElement("input")
         inputEl.type = 'file'
         inputEl.oninput = function (ev) {
@@ -49,8 +50,13 @@
     function solveFile(file: File) {
         readFileAsText(file)
             .then((text) => {
+                let t1 = performance.now()
                 let res = solver(text)
+                let t2 = performance.now()
+
                 result = res.value
+                timing = (t2 - t1)
+
                 if (res.kind == 'error') {
                     error = true
                 } else {
@@ -72,6 +78,13 @@
         })
     }
 
+    function prettyTime(ms: number): string {
+        if (ms > 1000) {
+            return `${(ms / 1000).toFixed(3)}s`
+        }
+        return `${ms}ms`
+    }
+
 </script>
 
 <div 
@@ -86,6 +99,7 @@
 >
     <em class="text" on:click={uploadInput}>Star {number}:</em>
     <div class="result" class:error={error}>{result}</div>
+    <div class="timing">{ timing > 0 ? `solved in ${prettyTime(timing)}` : ''}</div>
 </div>
 
 <style>
@@ -110,10 +124,16 @@
         color: red;
     }
 
+    .timing {
+        color: #ffff66;
+        margin-left: 10px;
+    }
+
     .star {
         position: relative;
-        display: inline-flex;
+        display: flex;
         align-items: center;
+        margin-bottom: 5px;
     }
 
     .star.dragging * {
