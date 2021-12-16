@@ -15,6 +15,7 @@
     import * as day13 from '../days/day13'
     import * as day14 from '../days/day14'
     import * as day15 from '../days/day15'
+    import * as day16 from '../days/day16'
 
     type Days = { 
         title: string, 
@@ -113,6 +114,12 @@
             description: "Find the path with minimal risk through the 2D cavern",
             star1: day15.star1,
             star2: day15.star2,
+        },
+        {
+            title: "Packet Decoder",
+            description: "Decoding hex to binary to packets with numbers and operators",
+            star1: day16.star1,
+            star2: day16.star2,
         },
     ]
 
