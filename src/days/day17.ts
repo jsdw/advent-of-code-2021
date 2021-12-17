@@ -19,7 +19,7 @@ export let star2: ThrowingSolver = (input) => {
 
     // Possible y values that would work?
     let minY = bounds.bottom
-    let maxY = star1(input)
+    let maxY = Math.abs(bounds.bottom)
 
     // Possible X values that would work?
     let minX = 1
@@ -44,20 +44,6 @@ function fallsWithinBounds(xVel: number, yVel: number, bounds: Bounds): boolean 
             && x <= bounds.right 
             && y <= bounds.top 
             && y >= bounds.bottom
-    }
-
-    // The most expensive thing to simulate is the high arcs. So, skip them:
-    if (yVel > 0) {
-        // How many steps to skip?
-        let steps = yVel * 2 + 1
-        // new xVel after these steps?
-        let newXVel = Math.max(xVel - steps, 0)
-        // y will be 0 again after this number of steps. what will x be?
-        x = ((xVel - (newXVel + 1)) / 2 + (newXVel + 1)) * (xVel - newXVel)
-        // Skip yVel to the downward part of the arc
-        yVel = -yVel - 1
-        // Skip xVel this many steps, too
-        xVel = newXVel
     }
 
     while (true) {
