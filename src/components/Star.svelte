@@ -62,7 +62,7 @@
                 } else {
                     error = false
                 }
-            }) 
+            })
     }
 
     function readFileAsText(file: File): Promise<string> {
@@ -81,13 +81,15 @@
     function prettyTime(ms: number): string {
         if (ms > 1000) {
             return `${(ms / 1000).toFixed(3)}s`
+        } else if (ms < 1) {
+            return `${(ms * 1000).toFixed(0)}μs`
         }
-        return `${ms}ms`
+        return `${ms.toFixed(0)}ms`
     }
 
 </script>
 
-<div 
+<div
     class="star"
     class:dragover={dragover}
     class:dragging={dragging}

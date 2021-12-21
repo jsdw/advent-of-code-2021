@@ -92,6 +92,7 @@ h3 {
 em {
     color: var(--text-em-color);
     text-shadow: var(--text-em-shadow);
+    font-style: normal;
 }
 
 a {
