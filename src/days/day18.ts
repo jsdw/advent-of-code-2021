@@ -1,8 +1,6 @@
 export let star1: ThrowingSolver = (input) => {
     let pairs = parseInput(input)
-    let pair = pairs.reduce(add)
-
-    return magnitude(pair)
+    return magnitude(pairs.reduce(add))
 }
 
 export let star2: ThrowingSolver = (input) => {
@@ -16,26 +14,14 @@ export let star2: ThrowingSolver = (input) => {
             if (m > bestMagnitude) bestMagnitude = m
         }
     }
-
     return bestMagnitude
 }
 
 function magnitude(pair: Pair): number {
-    function leftMagnitude(pair: Pair): number {
-        if (Array.isArray(pair)) {
-            return leftMagnitude(pair[0]) * 3 + rightMagnitude(pair[1]) * 2
-        } else {
-            return pair
-        }
+    if (Array.isArray(pair)) {
+        return magnitude(pair[0]) * 3 + magnitude(pair[1]) * 2
     }
-    function rightMagnitude(pair: Pair): number {
-        if (Array.isArray(pair)) {
-            return leftMagnitude(pair[0]) * 3 + rightMagnitude(pair[1]) * 2
-        } else {
-            return pair
-        }
-    }
-    return leftMagnitude(pair)
+    return pair
 }
 
 function add(left: Pair, right: Pair): Pair {
