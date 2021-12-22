@@ -109,7 +109,7 @@ export function strictEq<T>(other: T) {
     }
 }
 
-/** 
+/**
  * A set for which you can specify a function to map from arbitrary key to some primitive
  * type, and anothr to reverse this mapping. This allows you to use objects and arrays as
  * entries, and have them compared structurally (based on the key functions) rather than
@@ -119,13 +119,13 @@ export class KeyedSet<V, P extends Primitive> {
     #keyFn: (item: V) => P
     #unKeyFn: (key: P) => V
     #set: Set<P>
-    
+
     constructor(keyFn: (item: V) => P, unKeyFn: (key: P) => V) {
         this.#keyFn = keyFn
         this.#unKeyFn = unKeyFn
         this.#set = new Set()
     }
-    
+
     get [Symbol.iterator]() {
         return this.values.bind(this)
     }
@@ -151,7 +151,7 @@ export class KeyedSet<V, P extends Primitive> {
     }
 }
 
-/** 
+/**
  * A map for which you can specify a function to map from arbitrary key to some primitive
  * type, and anothr to reverse this mapping. This allows you to use objects and arrays as
  * keys, and have them compared structurally (based on the key functions) rather than
@@ -161,13 +161,13 @@ export class KeyedMap<K,V,P extends Primitive> {
     #keyFn: (item: K) => P
     #unKeyFn: (key: P) => K
     #map: Map<P,V>
-    
+
     constructor(keyFn: (item: K) => P, unKeyFn: (key: P) => K) {
         this.#keyFn = keyFn
         this.#unKeyFn = unKeyFn
         this.#map = new Map()
     }
-    
+
     get [Symbol.iterator]() {
         return this.entries.bind(this)
     }

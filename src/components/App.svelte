@@ -18,6 +18,8 @@
     import * as day16 from '../days/day16'
     import * as day17 from '../days/day17'
     import * as day18 from '../days/day18'
+    import * as day19 from '../days/day19'
+
 
     type Days = {
         title: string,
@@ -135,6 +137,12 @@
             star1: day18.star1,
             star2: day18.star2,
         },
+        {
+            title: "Beacon Scanner",
+            description: "Relative coords of beacons from scanners.. assemble the map",
+            star1: day19.star1,
+            star2: day19.star2,
+        },
     ]
 
     function toSolver(fn: ThrowingSolver): Solver {
@@ -152,7 +160,7 @@
 <div class="outer">
     <main>
         <h1><a href="https://adventofcode.com/2021">Advent of Code 2021</a></h1>
-        <p>Drag a file onto one of the stars for a given day to compute the result.</p>
+        <p>To view the result for a given star, click or drag to upload some input data for it.</p>
 
         {#each days as day, index}
             <Day
@@ -173,7 +181,7 @@
     }
 
     main {
-        max-width: 800px;
+        max-width: 600px;
         margin: 0px var(--margin);
         margin-bottom: var(--margin);
     }

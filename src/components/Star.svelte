@@ -48,6 +48,10 @@
     }
 
     function solveFile(file: File) {
+        result = ""
+        error = false
+        timing = 0
+
         readFileAsText(file)
             .then((text) => {
                 let t1 = performance.now()
