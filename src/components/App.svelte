@@ -20,7 +20,7 @@
     import * as day18 from '../days/day18'
     import * as day19 from '../days/day19'
     import * as day20 from '../days/day20'
-
+    import * as day21 from '../days/day21'
 
     type Days = {
         title: string,
@@ -149,6 +149,12 @@
             description: "Infinite 2d image; repeatedly mapping groups of 9 pixels to a new value",
             star1: day20.star1,
             star2: day20.star2,
+        },
+        {
+            title: "Dirac Dice",
+            description: "Players roll dice and move around a circle accumulating points",
+            star1: day21.star1,
+            star2: day21.star2,
         },
     ]
 

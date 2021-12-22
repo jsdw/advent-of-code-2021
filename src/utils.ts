@@ -194,7 +194,7 @@ export class KeyedMap<K,V,P extends Primitive> {
     values() {
         return this.#map.values()
     }
-    *entries() {
+    *entries(): Generator<[K,V],void,unknown> {
         for (let [k,v] of this.#map.entries()) {
             yield [this.#unKeyFn(k), v]
         }
