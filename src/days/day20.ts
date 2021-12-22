@@ -13,7 +13,12 @@ export let star2: ThrowingSolver = (input) => {
 }
 
 function enhance(image: Canvas, mapping: boolean[], steps: number): Canvas {
-    let flipAll = mapping[0]
+    // The "real" input data turns any entirely off position/surround to to on,
+    // and any entirely "on" position/surround to be off. The demo data does not
+    // do this. Allow the demo data to be provided and assume that this flipping
+    // will happen or not based on the first mapping value causing a flip or not.
+    const flipAll = mapping[0]
+
     let bounds = getBounds(image)
     let def = false
 
