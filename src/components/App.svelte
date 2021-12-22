@@ -19,6 +19,7 @@
     import * as day17 from '../days/day17'
     import * as day18 from '../days/day18'
     import * as day19 from '../days/day19'
+    import * as day20 from '../days/day20'
 
 
     type Days = {
@@ -142,6 +143,12 @@
             description: "Relative coords of beacons from scanners.. assemble the map",
             star1: day19.star1,
             star2: day19.star2,
+        },
+        {
+            title: "Trench Map",
+            description: "Infinite 2d image; repeatedly mapping groups of 9 pixels to a new value",
+            star1: day20.star1,
+            star2: day20.star2,
         },
     ]
 
