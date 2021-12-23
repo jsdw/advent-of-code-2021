@@ -62,7 +62,7 @@
         },
         {
             title: "Lanternfish",
-            description: "Array of fish multiplying every 7 days",
+            description: "Array of fish multiplying every 7 days (part 2 could be satisfying)",
             star1: day06.star1,
             star2: day06.star2,
         },
@@ -140,7 +140,7 @@
         },
         {
             title: "Beacon Scanner",
-            description: "Relative coords of beacons from scanners.. assemble the map",
+            description: "Relative coords of beacons from scanners; assemble the map (very slow; takes ~90s to solve)",
             star1: day19.star1,
             star2: day19.star2,
         },
@@ -152,7 +152,7 @@
         },
         {
             title: "Dirac Dice",
-            description: "Players roll dice and move around a circle accumulating points",
+            description: "Players roll dice and move around a circle accumulating points (fun!)",
             star1: day21.star1,
             star2: day21.star2,
         },
@@ -184,6 +184,12 @@
                 star2={day.star2 ? toSolver(day.star2) : undefined}
             />
         {/each}
+        <p class="bottom">
+            <em>
+            At this point I'm a little bored and have decided for now to call it a year!
+            Happy 2022! Maybe I'll get back and finish these off at some point :)
+            </em>
+        </p>
     </main>
 </div>
 
@@ -191,6 +197,10 @@
     .outer {
         display: flex;
         justify-content: center;
+    }
+
+    .bottom {
+        margin-top: 30px;
     }
 
     main {
